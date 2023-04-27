@@ -24,7 +24,7 @@ public class DecryptCommand extends CommonCommand implements Runnable {
         }
         try {
             var ksc = KobackupBackupSecurityv3Cipher.init(password, encryptionMode, encMsgV3);
-            System.out.printf("Decrypting file %s...\n", input);
+            System.out.printf("k_src = r\"%s\"\n", input);
             ksc.DecryptFile(input, output.value);
             System.out.printf("Output written to %s. Please check its validity.", output.value);
         } catch (Exception e) {
