@@ -6,8 +6,6 @@ import com.github.rvesse.airline.annotations.Option;
 import irsl.Main;
 import irsl.crypto.backupsecurityv3.KobackupBackupSecurityv3Cipher;
 
-import java.security.InvalidAlgorithmParameterException;
-
 @Command(name = "decrypt", description = "Decrypt the given file(s) so that the content can be extracted and modified.")
 public class DecryptCommand extends CommonCommand implements Runnable {
     @AirlineModule
@@ -19,6 +17,9 @@ public class DecryptCommand extends CommonCommand implements Runnable {
 
     @Override
     public void run() {
+        if (output == null) {
+            output = OutputArg.createFromInput(input);
+        }
         if (!output.postValidateConflict(input) || !output.postValidateExists(force)) {
             System.exit(Main.EXIT_STATUS_ERROR);
         }
